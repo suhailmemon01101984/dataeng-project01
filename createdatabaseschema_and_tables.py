@@ -9,6 +9,7 @@ create_departments_query=f"DROP TABLE IF EXISTS {schema}.departments CASCADE; CR
 create_salaries_query=f"DROP TABLE IF EXISTS {schema}.salaries; CREATE TABLE IF NOT EXISTS {schema}.salaries(emp_no integer CONSTRAINT pk_salaries PRIMARY KEY, salary integer, CONSTRAINT fk_salaries_employees FOREIGN KEY(emp_no) references {schema}.employees(emp_no));"
 create_dept_emp_query=f"DROP TABLE IF EXISTS {schema}.dept_emp; CREATE TABLE IF NOT EXISTS {schema}.dept_emp(emp_no integer, dept_no varchar(256), PRIMARY KEY(emp_no,dept_no), CONSTRAINT fk_dept_emp_employees FOREIGN KEY(emp_no) references {schema}.employees(emp_no), CONSTRAINT fk_dept_departments FOREIGN KEY(dept_no) references {schema}.departments(dept_no));"
 create_dept_manager_query=f"DROP TABLE IF EXISTS {schema}.dept_manager; CREATE TABLE IF NOT EXISTS {schema}.dept_manager(emp_no integer, dept_no varchar(256), PRIMARY KEY(emp_no,dept_no), CONSTRAINT fk_dept_manager_employees FOREIGN KEY(emp_no) references {schema}.employees(emp_no), CONSTRAINT fk_dept_manager_departments FOREIGN KEY(dept_no) references {schema}.departments(dept_no));"
+
 curs.execute(create_schema_query)
 curs.execute(create_titles_query)
 curs.execute(create_employee_query)
